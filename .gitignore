@@ -1,4 +1,14 @@
+# 가상 환경 제외
 venv/
+venv\
+
+# Python 캐시 파일 제외
 __pycache__/
+**/__pycache__/
 *.pyc
 *.pyo
+*.pyd
+
+# 로그 & 환경설정 파일 제외 (선택)
+*.log
+.env
