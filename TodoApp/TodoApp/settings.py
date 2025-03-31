@@ -38,8 +38,10 @@ INSTALLED_APPS = [
     "django.contrib.messages",
     "django.contrib.staticfiles",
     "tasks",
-    "rest_framework"
+    "rest_framework",
+    'drf_spectacular'
 ]
+
 
 MIDDLEWARE = [
     "django.middleware.security.SecurityMiddleware",
@@ -123,3 +125,15 @@ STATIC_URL = "static/"
 # https://docs.djangoproject.com/en/5.1/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
+
+
+SPECTACULAR_SETTINGS = {
+    'TITLE': 'Todo API',  # 문서 제목
+    'DESCRIPTION': 'Todo 앱의 API 문서',  # 문서 설명
+    'VERSION': '1.0.0',  # 버전
+    'SERVE_INCLUDE_SCHEMA': False,  # API 문서 페이지에서 스키마를 숨길지 여부
+}
+
+REST_FRAMEWORK = {
+    'DEFAULT_SCHEMA_CLASS': 'drf_spectacular.openapi.AutoSchema',
+}
