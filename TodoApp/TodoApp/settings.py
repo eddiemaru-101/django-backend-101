@@ -39,7 +39,8 @@ INSTALLED_APPS = [
     "django.contrib.staticfiles",
     "tasks",
     "rest_framework",
-    'drf_spectacular'
+    'drf_spectacular',
+    'drf_spectacular_sidecar', 
 ]
 
 
@@ -126,7 +127,7 @@ STATIC_URL = "static/"
 
 DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
 
-
+# Swagger docs config(Spectacular)
 SPECTACULAR_SETTINGS = {
     'TITLE': 'Todo API',  # 문서 제목
     'DESCRIPTION': 'Todo 앱의 API 문서',  # 문서 설명
