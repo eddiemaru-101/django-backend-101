@@ -9,12 +9,10 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('', include('tasks.urls')),  # tasks 앱의 URL을 포함
 
-
-    path('schema/', SpectacularAPIView.as_view(), name='schema'),  # 스키마 URL
-
+    # 스키마 URL
+    path('schema/', SpectacularAPIView.as_view(), name='schema'), 
     # Swagger UI (HTML 문서 형식)
-    path('swagger/', SpectacularSwaggerView.as_view(url_name='schema'), name='swagger'),  # Swagger UI
-    
+    path('swagger/', SpectacularSwaggerView.as_view(url_name='schema'), name='swagger'),  
     # ReDoc UI (깔끔한 문서 형식)
     path('schema/redoc/', SpectacularRedocView.as_view(url_name='schema'), name='redoc'), 
 

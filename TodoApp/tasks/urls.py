@@ -1,12 +1,9 @@
 # tasks/urls.py
 from django.urls import path, include
 from rest_framework.routers import DefaultRouter
-from .views import TaskViewSet
-
-# DefaultRouter를 사용하여 ViewSet을 자동으로 URL에 매핑
-router = DefaultRouter()
-router.register(r'tasks', TaskViewSet)  # 'tasks' URL과 TaskViewSet 연결
+from . import views
 
 urlpatterns = [
-    path('api/', include(router.urls)),  # ViewSet을 위한 URL을 api/ 아래로 등록
+    path('tasks/', views.create_task, name='create-task'),           # POST 요청
+    path('tasks/<int:pk>/', views.get_task, name='get-task'),        # GET 요청
 ]
