@@ -129,10 +129,10 @@ DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
 
 # Swagger docs config(Spectacular)
 SPECTACULAR_SETTINGS = {
-    'TITLE': 'Todo API',  # 문서 제목
-    'DESCRIPTION': 'Todo 앱의 API 문서',  # 문서 설명
-    'VERSION': '1.0.0',  # 버전
-    'SERVE_INCLUDE_SCHEMA': False,  # API 문서 페이지에서 스키마를 숨길지 여부
+    'TITLE': 'Todo API',  
+    'DESCRIPTION': 'Todo 앱의 API 문서',  
+    'VERSION': '1.0.0',  
+    'SERVE_INCLUDE_SCHEMA': False,  
 }
 
 REST_FRAMEWORK = {
