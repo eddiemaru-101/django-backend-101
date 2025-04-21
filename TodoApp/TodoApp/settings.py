@@ -43,7 +43,6 @@ INSTALLED_APPS = [
     'drf_spectacular_sidecar', 
 ]
 
-
 MIDDLEWARE = [
     "django.middleware.security.SecurityMiddleware",
     "django.contrib.sessions.middleware.SessionMiddleware",
