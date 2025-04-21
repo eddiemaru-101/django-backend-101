@@ -1,4 +1,3 @@
-from rest_framework import viewsets, status
 from .models import Task
 from rest_framework.decorators import api_view
 from rest_framework.response import Response
