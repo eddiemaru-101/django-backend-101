@@ -4,6 +4,8 @@ from rest_framework.response import Response
 from .dto import TaskCreateRequestDTO, TaskResponseDTO
 from drf_spectacular.utils import extend_schema
 from .serializers import TaskCreateSerializer, TaskResponseSerializer
+from rest_framework.exceptions import APIException
+from django.shortcuts import get_object_or_404
 from TodoApp.constants import (
     HTTP_200_OK,
     HTTP_201_CREATED,
@@ -18,11 +20,15 @@ from TodoApp.constants import (
 @api_view(['POST'])
 def create_task(request):
     serializer = TaskCreateSerializer(data=request.data)
-    if serializer.is_valid():
+    serializer.is_valid(raise_exception=True)
+
+    try:
         task = Task.objects.create(**serializer.validated_data)
-        response_serializer = TaskResponseSerializer(task)
-        return Response(response_serializer.data, status=HTTP_201_CREATED)
-    return Response(serializer.errors, status=HTTP_400_BAD_REQUEST)
+    except Exception as e:
+        raise APIException(f"할 일 생성 중 오류 발생: {str(e)}")
+
+    response_serializer = TaskResponseSerializer(task)
+    return Response(response_serializer.data, status=HTTP_201_CREATED)
 
 
 @extend_schema(
@@ -30,10 +36,6 @@ def create_task(request):
 )
 @api_view(['GET'])
 def get_task(request, pk):
-    try:
-        task = Task.objects.get(pk=pk)
-    except Task.DoesNotExist:
-        return Response({"error": "할 일이 존재하지 않습니다."}, status=HTTP_404_NOT_FOUND)
-
+    task = get_object_or_404(Task, pk=pk)
     response_serializer = TaskResponseSerializer(task)
     return Response(response_serializer.data, status=HTTP_200_OK)
